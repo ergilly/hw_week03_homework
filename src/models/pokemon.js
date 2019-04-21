@@ -6,7 +6,6 @@ class Pokemon {
     this.data = [];
     this.pokemonData = [];
     this.pokemonSpecies = [];
-    this.pokemonEvolution = [];
   }
 
   getData() {
@@ -43,22 +42,6 @@ class Pokemon {
           PubSub.publish('Pokemon:poke-evolution-chain', data);
         })
 
-      })
-    })
-  }
-
-  getSpecificPokemon() {
-    PubSub.subscribe('SelectView:change', (evt) => {
-      const url = `https://pokeapi.co/api/v2/pokemon/${parseInt(evt.detail)+2}/`
-      const getSpecies = new RequestHelper(url);
-      getSpecies.get().then((data) => {
-        this.pokemonSpecies = data;
-        const evolutionUrl = this.pokemonSpecies.evolution_chain.url;
-        const getEvolution = new RequestHelper(evolutionUrl);
-        getEvolution.get().then((data) => {
-          this.pokemonEvolution = data;
-          PubSub.publish('Pokemon:get-pokemons-1st-evo', data);
-        })
       })
     })
   }

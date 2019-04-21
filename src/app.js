@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const pokemon = new Pokemon();
   pokemon.getData();
   pokemon.getPokemon();
-  pokemon.getEvolutionChain();
 
   const pokemonInfoView = new PokemonInfoView();
   pokemonInfoView.bindEvents();
